@@ -1,0 +1,85 @@
+<div class="container mt-4">
+  <h2>Catálago de Produtos
+    <button class="btn btn-primary btn-arrendondamento"
+    (click)="openModal()">
+      <i class="fas fa-plus"></i>
+      Novo Produto
+    </button>
+  </h2>
+  <table class="table table-striped table-hover">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Produto</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">Preco</th>
+      <th scope="col">Tamanho</th>
+      <th>Ações <i class="fas fa-cog"></i></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let p of produtos; let i = index">
+      <th scope="row"> {{ i }}</th>
+      <td>{{ p.nome }}</td>
+      <td>{{ p.categoria }}</td>
+      <td>{{ p.preco}}</td>
+      <td>{{ p.tamanho }}</td>
+      <td>
+        <button class="btn btn-danger rounded-circle"><i class="fas fa-trash-alt"></i></button>
+        - <button class="btn btn-warning rounded-circle"><i class="fas fa-edit"></i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="modal" tabindex=" -3" id="add-produto">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"> Adicionar novo produto</h5>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="salvarFormProduto()">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="mb-3 col-md-12">
+              <label class="form-label">Nome Produto</label>
+              <input type="text" class="form-control" formControlName="nomeproduto">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Categoria</label>
+              <input type="text" class="form-control" formControlName="categoriaproduto">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Preço</label>
+              <input type="number" min="0" class="form-control" formControlName="precoproduto" oninput="formatDecimal(this)">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Tamanho</label>
+              <input type="text" class="form-control" formControlName="tamanhoproduto">
+            </div>
+            <div class="md-3 col">
+              <label>Status</label>
+              <select class="form-control" formControlName="statusproduto">
+                <option value="LANÇAMENTO">LANÇAMENTO</option>
+                <option value="PROMOÇÃO">PROMOÇÃO</option>
+                <option value="EM FALTA">EM FALTA </option>
+              </select>
+            </div>
+            <div class="mb-12 col-md-12">
+              <label class="form-check-label">
+                Descrição produto
+              </label>
+              <textarea class="form-control" rows="3"
+                        formControlName="descricaoProduto"></textarea>
+            </div>
+          </div>
+      </div>
+        <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"
+        (click)="closeModal()">Fechar</button>
+        <button class="btn btn-success" type="submit">Salvar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

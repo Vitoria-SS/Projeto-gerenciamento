@@ -1,0 +1,18 @@
+a {
+  font-weight: bold; 
+}
+img{
+  width: 160px;
+  height: 160px;
+}
+h1{
+  font-size:35px;
+}
+h3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ margin-left: 420px;
+  font-size: 15px;
+}
+

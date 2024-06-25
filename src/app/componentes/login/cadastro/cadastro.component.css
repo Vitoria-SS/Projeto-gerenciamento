@@ -1,0 +1,25 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    margin: 23px;
+   
+  }
+  .user-senha {
+    margin-left: 28px;
+    padding-left: 5px;
+  }
+  .user-usuario{
+  margin-left: 20px;
+  margin-bottom: 28px;
+  }
+  .entrar{
+  display: inline-block;
+  margin: 45px 22px 0 88px;
+  padding-left: 6px;
+  }
+  h4{
+    text-align: center;
+    margin: 6px 0 30px 60px;
+  }
+  
+  
