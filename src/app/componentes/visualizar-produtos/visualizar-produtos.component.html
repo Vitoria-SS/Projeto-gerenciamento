@@ -44,7 +44,7 @@
       <div class="modal-header">
         <h5 class="modal-title"> Adicionar novo produto</h5>
       </div>
-      <form [formGroup]="form" (ngSubmit)="salvarFormProduto()">
+      <form [formGroup]="form" (ngSubmit)="submitForm()">
         <div class="modal-body">
           <div class="form-row">
             <div class="mb-3 col-md-12">
@@ -52,7 +52,7 @@
               <input type="text" class="form-control" formControlName="nomeproduto">
             </div>
           </div>
-        
+
           <div class="mb-3 col-md-6">
             <label class="form-label">Preço</label>
             <input type="number" min="0" class="form-control" formControlName="precoproduto" oninput="formatDecimal(this)">

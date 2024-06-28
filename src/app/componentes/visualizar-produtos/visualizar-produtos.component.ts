@@ -18,7 +18,7 @@ export class VisualizarProdutosComponent implements OnInit {
   form: FormGroup;
   constructor(private produtoservice: ProdutoService,
               private fb: FormBuilder) {
-    
+
     this.form = this.fb.group({
         nomeproduto: ['', Validators.required],
         descricaoProduto: ['', Validators.required],
@@ -31,7 +31,7 @@ export class VisualizarProdutosComponent implements OnInit {
       });
     }
 
-  
+
   openModal(){
     $('#add-produto').modal('show');
   }
@@ -128,9 +128,9 @@ export class VisualizarProdutosComponent implements OnInit {
   carregarDadosProduto(produtoEditar: Produto) {
     this.form.patchValue({
       nomeproduto: produtoEditar.nome,
-      descricaoProduto: produtoEditar.descricao, 
+      descricaoProduto: produtoEditar.descricao,
       precoproduto: produtoEditar.preco,
-      categoriaproduto: produtoEditar.categoria, 
+      categoriaproduto: produtoEditar.categoria,
       tamanhoproduto: produtoEditar.tamanho,
       quantidadeproduto: produtoEditar.quantidadeEstoque,
       statusproduto: produtoEditar.status,
@@ -144,7 +144,7 @@ export class VisualizarProdutosComponent implements OnInit {
         this.form.value.nomeproduto,
         this.form.value.descricaoProduto,
         this.form.value.precoproduto,
-        this.form.value.categoriaproduto, 
+        this.form.value.categoriaproduto,
         this.form.value.tamanhoproduto,
         this.form.value.quantidadeproduto,
         this.form.value.statusproduto
@@ -168,8 +168,11 @@ export class VisualizarProdutosComponent implements OnInit {
       this.marcarTodosComoClicados();
     }
   }
+
+
+
   ngOnInit(): void {
     this.listarProdutos();
-  
+
   }
 }
