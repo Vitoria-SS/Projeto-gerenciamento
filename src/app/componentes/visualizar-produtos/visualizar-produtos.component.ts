@@ -20,16 +20,15 @@ export class VisualizarProdutosComponent implements OnInit {
               private fb: FormBuilder) {
     
     this.form = this.fb.group({
-      nomeproduto: ['', Validators.required],
-      categoriaproduto: ['', Validators.required],
-      precoproduto: ['', Validators.required],
-      tamanhoproduto: ['', Validators.required],
-      quantidadeproduto:['', Validators.required],
-      statusproduto: ['', Validators.required],
-      descricaoproduto: ['', Validators.required],
-      id: [0]
-    });
-    
+        nomeproduto: ['', Validators.required],
+        descricaoProduto: ['', Validators.required],
+        precoproduto: ['', [Validators.required, Validators.min(0)]],
+        categoriaproduto: ['', Validators.required],
+        tamanhoproduto: ['', Validators.required],
+        quantidadeproduto: ['', [Validators.required, Validators.min(1)]],
+        statusproduto: ['', Validators.required],
+        id: [0]
+      });
     }
 
   
@@ -40,6 +39,7 @@ export class VisualizarProdutosComponent implements OnInit {
     $('#add-produto').modal('hide');
   }
  salvarFormProduto() {
+  console.log(this.form);
     if (this.form.valid) {
       const novoProduto: Produto = new Produto(
         this.form.value.nomeproduto,
@@ -66,6 +66,7 @@ export class VisualizarProdutosComponent implements OnInit {
      }else{
        console.log("CAMPOS INVALIDOS ENCONTRADOS.");
        console.log("DADOS DOS CAMPOS: ", this.form.value);
+
        const formControls = this.form.controls;
     for (let field in formControls) {
       if (formControls[field].invalid) {
@@ -78,11 +79,6 @@ export class VisualizarProdutosComponent implements OnInit {
     this.marcarTodosComoClicados();
   }
 }
-      // Swal.fire('Cuidado', 'Alguns campos do formulário não estão ' +
-     //    'corretos.', 'warning');
-      // this.marcarTodosComoClicados();
-    // }
-  // }
    isCampoValido(inputNome: string) : boolean {
     const campo: any = this.form.get(inputNome);
     return campo && campo.touched && campo.invalid;
