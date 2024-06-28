@@ -1,50 +1,32 @@
 import { Injectable } from '@angular/core';
 import { Produto } from '../model/produto';
 import {Status} from "../model/status";
+import Dexie from "dexie";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProdutoService {
+export class ProdutoService extends Dexie {
+  produtos: Dexie.Table<Produto,number>;
 
-  private produtos: string[] = [];
-  private produtoTeste: Produto[] =[];
   constructor() {
+    super('ProdutoDB');
+  this.version(1).stores({
+    produtos: '++id,nome, descricao, preco,categoria,tamanho,quantidadeEstoque,status',
+  });
+  this.produtos = this.table('produtos');
   }
-  
-  addProduto(produto: string){
-    this.produtos.push(produto);
-    console.log('PRODUTO CADASTRADO:', this.produtos);
+  async adicionarProduto(produto: Produto): Promise<number> {
+    return await this.produtos.add(produto);
   }
-      //removerproduto{}
-      //editarproduto{}
-     //buscarproduto{}
-
-  pupularTabelaProduto() : Produto[] {
-    let status1: Status= new Status(0, 'Lançamento');
-    let status2: Status= new Status(1, 'Promoção');
-    let status3: Status= new Status(2, 'Indisponível');
-    let produto1: Produto = new Produto(
-      1,
-      'Camiseta Real Madrid',
-      'Camiseta oficial do Real Madrid para temporada 2024',
-      79.99,
-      'Camiseta',
-      'M',
-      167,
-      status1,
-    );
-    let produto2: Produto = new Produto(
-      2,
-      'Camiseta Internacional',
-      'Camiseta oficial do Internacional para temporada 2024',
-      89.99,
-      'camiseta',
-      'G',
-       85,
-      status2,
-    );
-    this.produtoTeste.push(produto1,produto2);
-    return this.produtoTeste;
+  async buscarProdutos(): Promise<Produto[]>{
+    return await this.produtos.toArray();
   }
+  async removerProdutos(id:number): Promise<void>{
+    return await this.produtos.delete(id);
+  }
+  async atualizarProdutos(id: number, produto: Produto): Promise<number>{
+    return await this.produtos.update(id, produto);
+  }
+ 
 }

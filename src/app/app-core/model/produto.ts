@@ -1,7 +1,7 @@
 import {Status} from "./status";
 
 export class Produto {
-  id: number;
+  id? : number;
   nome: string;
   descricao: string;
   preco: number;
@@ -11,7 +11,6 @@ export class Produto {
   status: Status;
 
   constructor( 
-    id: number,
     nome: string,
     descricao: string,
     preco: number,
@@ -19,8 +18,9 @@ export class Produto {
     tamanho:string,
     quantidadeEstoque: number,
     status:Status,
+    id? : number,
   ) {
-    this.id = id;
+   
     this.nome = nome;
     this.descricao = descricao;
     this.preco = preco;
@@ -28,6 +28,7 @@ export class Produto {
     this.tamanho = tamanho;
     this.quantidadeEstoque = quantidadeEstoque;
     this.status = status;
+    this.id = id;
   }
 }
 
