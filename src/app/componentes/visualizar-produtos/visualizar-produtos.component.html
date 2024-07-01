@@ -43,11 +43,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">
-          <ng-container *ngIf="form.value.id > 0; else novaTarefa">
-            Editar tarefa
+          <ng-container *ngIf="form.value.id > 0; else novoproduto">
+            Editar Produto
           </ng-container>
-          <ng-template #novaTarefa>
-            Adicionar Tarefa
+          <ng-template #novoproduto>
+            Adicionar Produto
           </ng-template>
         </h5>
       </div>
@@ -131,7 +131,7 @@
 </div>
 
 <!-- MODAL DE VISUALIZAR PRODUTO -->
-<div class="modal fade" id="tarefaModal" tabindex="-1" role="dialog"
+<div class="modal fade" id="produtoModal" tabindex="-1" role="dialog"
      aria-labelledby="visualizar" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -148,8 +148,8 @@
        <p> <strong>Tamanho:</strong>
           {{ produtoVisualizar?.tamanho}} </p>
       <p> <strong>Quantidade em Estoque:</strong>
-          {{ produtoVisualizar?.quantidadeproduto}} </p>
-          <p> <strong>Status:</strong>  {{ produtoVisualizar?.statusproduto}} </p>
+          {{ produtoVisualizar?.quantidadeEstoque}} </p>
+          <p> <strong>Status:</strong>  {{ produtoVisualizar?.status}} </p>
           <p> <strong>Descrição</strong>  {{ produtoVisualizar?.descricao }} </p>
       </div>
       <div class="modal-footer">

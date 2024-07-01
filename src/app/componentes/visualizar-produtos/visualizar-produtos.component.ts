@@ -39,7 +39,7 @@ export class VisualizarProdutosComponent implements OnInit {
     $('#add-produto').modal('hide');
   }
  salvarFormProduto() {
-  console.log(this.form);
+ 
     if (this.form.valid) {
       const novoProduto: Produto = new Produto(
         this.form.value.nomeproduto,
@@ -66,14 +66,6 @@ export class VisualizarProdutosComponent implements OnInit {
      }else{
        console.log("CAMPOS INVALIDOS ENCONTRADOS.");
        console.log("DADOS DOS CAMPOS: ", this.form.value);
-
-       const formControls = this.form.controls;
-    for (let field in formControls) {
-      if (formControls[field].invalid) {
-        console.log(`Campo inválido: ${field}`);
-        console.log(formControls[field].errors);
-      }
-    }
 
     Swal.fire('Cuidado', 'Alguns campos do formulário não estão corretos.', 'warning');
     this.marcarTodosComoClicados();
