@@ -42,32 +42,60 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title"> Adicionar novo produto</h5>
+        <h5 class="modal-title">
+          <ng-container *ngIf="form.value.id > 0; else novaTarefa">
+            Editar tarefa
+          </ng-container>
+          <ng-template #novaTarefa>
+            Adicionar Tarefa
+          </ng-template>
+        </h5>
       </div>
-      <form [formGroup]="form" (ngSubmit)="salvarFormProduto()">
+      <form [formGroup]="form" (ngSubmit)="submitForm()">
         <div class="modal-body">
           <div class="form-row">
             <div class="mb-3 col-md-12">
               <label class="form-label">Nome Produto</label>
               <input type="text" class="form-control" formControlName="nomeproduto">
+            <div class="text-danger" *ngIf="isCampoValido('nomeproduto')">
+              Campo Obrigatório
             </div>
           </div>
         
           <div class="mb-3 col-md-6">
             <label class="form-label">Preço</label>
             <input type="number" min="0" class="form-control" formControlName="precoproduto" oninput="formatDecimal(this)">
+            <div class="text-danger" *ngIf="isCampoValido('precoproduto')">
+              Campo Obrigatório
+            </div>
           </div>
             <div class="mb-3 col-md-6">
               <label class="form-label">Categoria</label>
               <input type="text" class="form-control" formControlName="categoriaproduto">
+              <div class="text-danger" *ngIf="isCampoValido('categoriaproduto')">
+                Campo Obrigatório
+              </div>
             </div>
-          <div class="mb-3 col-md-6">
+          <div class="mb-3 col">
               <label class="form-label">Tamanho</label>
-              <input type="text" class="form-control" formControlName="tamanhoproduto">
-            </div>
+              <select class="form-control" formControlName="tamanhoproduto">
+                <option value="PP">PP</option>
+                <option value="P">P</option>
+                <option value="M">M</option>
+                <option value="G">G</option>
+                <option value="GG">GG</option>
+                <option value="EXG">EXG</option>
+              </select>
+              <div class="text-danger" *ngIf="isCampoValido('tamanhoproduto')">
+                Campo Obrigatório
+              </div>
+          </div>
             <div class="mb-3 col-md-6">
               <label class="form-label">Quantidade Estoque</label>
               <input type="text" class="form-control" formControlName="quantidadeproduto">
+              <div class="text-danger" *ngIf="isCampoValido('quantidadeproduto')">
+                Campo Obrigatório
+              </div>
             </div>
             <div class="md-3 col">
               <label>Status</label>
@@ -76,6 +104,9 @@
                 <option value="PROMOÇÃO">PROMOÇÃO</option>
                 <option value="EM FALTA">EM FALTA </option>
               </select>
+              <div class="text-danger" *ngIf="isCampoValido('statusproduto')">
+                Campo Obrigatório
+              </div>
           </div>
           <div class="mb-12 col-md-12">
             <label class="form-check-label">
@@ -83,6 +114,9 @@
             </label>
             <textarea class="form-control" rows="3"
                       formControlName="descricaoProduto"></textarea>
+                      <div class="text-danger" *ngIf="isCampoValido('descricaoProduto')">
+                        Campo Obrigatório
+                      </div>
           </div>
       </div>
         <div class="modal-footer">
@@ -90,7 +124,38 @@
         (click)="closeModal()">Fechar</button>
         <button class="btn btn-success" type="submit">Salvar</button>
       </div>
+      </div>
       </form>
     </div>
   </div>
 </div>
+
+<!-- MODAL DE VISUALIZAR PRODUTO -->
+<div class="modal fade" id="tarefaModal" tabindex="-1" role="dialog"
+     aria-labelledby="visualizar" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="visualizar">Detalhes do Produto</h5>
+        <button class="close" type="button" data-dismiss="modal" arial-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p> <strong>Nome:</strong>  {{ produtoVisualizar?.nome }} </p>
+        <p> <strong>Preço:</strong>  {{ produtoVisualizar?.preco }} </p>
+        <p> <strong>Categoria:</strong>  {{ produtoVisualizar?.categoria }} </p>
+       <p> <strong>Tamanho:</strong>
+          {{ produtoVisualizar?.tamanho}} </p>
+      <p> <strong>Quantidade em Estoque:</strong>
+          {{ produtoVisualizar?.quantidadeproduto}} </p>
+          <p> <strong>Status:</strong>  {{ produtoVisualizar?.statusproduto}} </p>
+          <p> <strong>Descrição</strong>  {{ produtoVisualizar?.descricao }} </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
