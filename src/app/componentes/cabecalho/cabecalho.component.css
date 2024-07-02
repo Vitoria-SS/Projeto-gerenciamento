@@ -1,19 +1,50 @@
+
 a {
   font-weight: bold;
 }
 img{
-  width: 160px;
-  height: 160px;
+  width: 550px;
+  height: 180px;
 }
 h1{
   font-size:35px;
   margin-right: 100px;
 }
-h3{
+h3 {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 15px;
-
 }
+
+.responsivo{
+  font-size: 1.25rem;
+}
+
+  @media (min-width: 768px) {
+    .responsivo {
+      font-size: 1.5rem;
+    }
+  }
+  @media (min-width: 992px) {
+    .responsivo {
+      font-size: 35px;
+      margin-left: 300px;
+     margin-top: -130px;
+
+    }
+  }
+  @media (min-width: 768px) {
+    .responsivo2 {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .responsivo2 {
+      font-size: 20px;
+      margin-left:290px;
+
+    }
+  }
 
